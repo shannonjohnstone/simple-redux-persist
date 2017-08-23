@@ -14,10 +14,10 @@ There is two configuration points for setting up this package, your store and th
 **Store configuration using sessionStorage**
 
 ```js
-import { saveState, persistStore } from 'simple-redux-persist'
+import { saveStore, persistStore } from 'simple-redux-persist'
 
 function configureStore(initialState = {}) {
-  const enhancers = [applyMiddleware(saveState)] //
+  const enhancers = [applyMiddleware(saveStore)] //
   const store = { ...createStore(rootReducer, initialState, compose(...enhancers)) }
   return store
 }
@@ -28,12 +28,12 @@ export default persistStore(configureStore())
 **Store configuration using localStorage**
 
 ```js
-import { saveState, persistStore, useLocalStorage } from 'simple-redux-persist'
+import { saveStore, persistStore, useLocalStorage } from 'simple-redux-persist'
 
 useLocalStorage()
 
 function configureStore(initialState = {}) {
-  const enhancers = [applyMiddleware(saveState)] //
+  const enhancers = [applyMiddleware(saveStore)] //
   const store = { ...createStore(rootReducer, initialState, compose(...enhancers)) }
   return store
 }

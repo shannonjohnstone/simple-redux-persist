@@ -1,11 +1,11 @@
 import persistStore from './persistStore'
-import saveState from './saveState'
+import saveStore from './saveStore'
 import { storageType } from './utils'
 
 const useLocalStorage = storageType.useLocalStorage
 
 export {
   persistStore,
-  saveState,
+  saveStore,
   useLocalStorage
 }

@@ -9,9 +9,9 @@ import { GET_ITEM, SET_ITEM, REMOVE_ITEM } from '../src/utils/constants'
 
 const { expect } = chai
 chai.use(sinonChai)
-import { saveState } from '../src'
+import { saveStore } from '../src'
 
-describe('saveState', () => {
+describe('saveStore', () => {
   const action = { type: FAKE_ACTION }
 
   it('should pass the intercepted action to next - sessionStorage', () => {
@@ -22,7 +22,7 @@ describe('saveState', () => {
     const fakeStore = { getState() { return reducerInitStub } }
 
     expect(storage(GET_ITEM)).equal(undefined)
-    saveState(fakeStore)(fakeNext)(action)
+    saveStore(fakeStore)(fakeNext)(action)
 
     expect(fakeNext.withArgs(action)).calledOnce
     const value = storage(GET_ITEM)
@@ -38,7 +38,7 @@ describe('saveState', () => {
     const fakeStore = { getState() { return reducerInitStub } }
 
     expect(storage(GET_ITEM)).equal(undefined)
-    saveState(fakeStore)(fakeNext)(action)
+    saveStore(fakeStore)(fakeNext)(action)
 
     expect(fakeNext.withArgs(action)).calledOnce
     const value = storage(GET_ITEM)
