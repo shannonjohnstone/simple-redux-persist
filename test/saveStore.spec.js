@@ -30,7 +30,7 @@ describe('saveStore', () => {
     expect(value).equal(JSON.stringify(reducerInitStub))
   })
   it('should pass the intercepted action to next - localStorage', () => {
-    storageType.useLocalStorage()
+    storageType.useLocalStorage('unique-local-storage-key')
     storage(REMOVE_ITEM)
 
     const nextArgs = []

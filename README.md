@@ -9,7 +9,9 @@ This package can be used with the following browser storage;
 
 ### Configuration
 
-There is two configuration points for setting up this package, your store and the location you import your store
+There is two configuration options, either sessionStorage or localStorage.
+
+By default this package is setup to use `sessionStorage` but if you would like to use `localStorage` it is as simple as using the second example above. The only difference to the `sessionStorage` example is your call the `useLocalStorage()`
 
 **Store configuration using sessionStorage**
 
@@ -22,10 +24,17 @@ function configureStore(initialState = {}) {
   return store
 }
 
-export default persistStore(configureStore())
+export default () => persistStore(configureStore())
 ```
 
 **Store configuration using localStorage**
+
+When wanting to use `localStorage` you can you the `useLocalStorage` method to set that option and doing so you can also pass in a unique prefix if you would like.
+
+```js
+useLocalStorage('unique-prefix') // with prefix -> redux-local-storage-unique-prefix
+useLocalStorage() // without prefix -> redux-local-storage
+```
 
 ```js
 import { saveStore, persistStore, useLocalStorage } from 'simple-redux-persist'
@@ -38,16 +47,5 @@ function configureStore(initialState = {}) {
   return store
 }
 
-export default persistStore(configureStore())
+export default () => persistStore(configureStore())
 ```
-
-By default this package is setup to use `sessionStorage` but if you would like to use `localStorage` it is as simple as using the second example above. The only difference to the `sessionStorage` example is your call the `useLocalStorage()`
-
-**Importing your store**
-
-```js
-import configureStore from './store'
-const store = configureStore
-```
-
-You will notice in the above example you are not invoke `configureStore` in this location as that is done back when we export the `persistStore(configureStore())` in your store configuration
