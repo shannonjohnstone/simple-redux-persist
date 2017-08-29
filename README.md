@@ -11,7 +11,12 @@ This package can be used with the following browser storage;
 
 There is two configuration options, either sessionStorage or localStorage.
 
-By default this package is setup to use `sessionStorage` but if you would like to use `localStorage` it's simple as using the second example above. The only difference to the `sessionStorage` example is your call the `useLocalStorage()`
+By default this package is setup to use `sessionStorage` but if you would like to use `localStorage` it's simple as using the `useLocalStorage()` method in the second example.
+
+**sessionStorage versus localStorage**
+
+- `sessionStorage`: the stored item is only stored for as long as application is open and once it's closed the stored item is removed
+- `localStorage`: the stored item is kept until it it's manually removed, no matter if the tab or window is closed
 
 **Store configuration using sessionStorage**
 
@@ -51,11 +56,11 @@ export default () => persistStore(configureStore())
 ```
 
 ### Reducer Configuration
-When configuring your redux reducer to work with this package you need to add a check for when the store is retrieved from your desired storage and feed back into the store.
+When configuring your redux reducer to work with this package you need to add a check for when the store is retrieved from your desired storage to load back into the store.
 
-In your root reducer file you will need to setup a switch statement that looks for the desired action.
+In your root reducer file you will need to setup a switch statement that looks for the desired action (if you do not already have one in place).
 
-That action is `RETRIEVE_STATE`, this action is dispatched when the package finds a stored object in storage and loads it back into the redux.
+That action is `RETRIEVE_STATE`, this action is dispatched when the package retrieves a stored object from storage and loads it back into the redux store.
 
 ```js
 import { combineReducers } from 'redux'
