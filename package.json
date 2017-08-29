@@ -1,6 +1,6 @@
 {
   "name": "simple-redux-persist",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "simple redux persist soultion",
   "main": "lib/index.js",
   "scripts": {
