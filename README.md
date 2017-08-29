@@ -11,7 +11,7 @@ This package can be used with the following browser storage;
 
 There is two configuration options, either sessionStorage or localStorage.
 
-By default this package is setup to use `sessionStorage` but if you would like to use `localStorage` it is as simple as using the second example above. The only difference to the `sessionStorage` example is your call the `useLocalStorage()`
+By default this package is setup to use `sessionStorage` but if you would like to use `localStorage` it's simple as using the second example above. The only difference to the `sessionStorage` example is your call the `useLocalStorage()`
 
 **Store configuration using sessionStorage**
 
