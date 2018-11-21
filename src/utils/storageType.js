@@ -5,18 +5,18 @@ export default (() => {
   let localStorageKey
   console.log(storageType, 'storageTypeUtils invoked');
 
-  function setLocalStorageKey(storageKey) {
-    if (!storageKey || storageKey === undefined || storageKey === null) localStorageKey = REDUX_LOCAL_STORAGE_PREFIX
-    else localStorageKey = `${REDUX_LOCAL_STORAGE_PREFIX}-${storageKey}`
+  function setAppName(appName) {
+    if (!appName) localStorageKey = REDUX_LOCAL_STORAGE_PREFIX
+    else localStorageKey = `${REDUX_LOCAL_STORAGE_PREFIX}-${appName}`
   }
 
   function getLocalStorageKey() {
     return localStorageKey
   }
 
-  function useLocalStorage(storageKey) {
+  function useLocalStorage(appName) {
     storageType = 'local'
-    setLocalStorageKey(storageKey)
+    setAppName(appName)
   }
 
   function getStorageType() {
@@ -26,7 +26,7 @@ export default (() => {
   return {
     useLocalStorage,
     getStorageType,
-    setLocalStorageKey,
+    setAppName,
     getLocalStorageKey
   }
 })()

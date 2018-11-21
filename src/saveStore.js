@@ -1,17 +1,23 @@
-import { checkForStorage, storageType, storage } from './utils'
+import { checkForStorage, storageType, storage} from './utils'
 
-export default store => next => action => {
-  if (typeof (window) === 'undefined' || !checkForStorage()) return next(action)
+export default (appName) => {
+  // Feels to dangerous to allow people to have a default app name, because their apps will clash
+  if (!appName) throw new Error('An appName must be supplied')
+  storageType.setAppName(appName)
 
-  const result = next(action)
+  return store => next => action => {
+    if (typeof (window) === 'undefined' || !checkForStorage()) return next(action)
 
-  const state = store.getState()
-  const serializedState = JSON.stringify(state)
+    const result = next(action)
 
-  try {
-    storage('setItem', serializedState)
-  } catch (e) {
-    console.error('Error saving state : ', e)
+    const state = store.getState()
+    const serializedState = JSON.stringify(state)
+
+    try {
+      storage('setItem', serializedState)
+    } catch (e) {
+      console.error('Error saving state : ', e)
+    }
+    return result
   }
-  return result
 }

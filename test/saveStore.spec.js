@@ -22,7 +22,7 @@ describe('saveStore', () => {
     const fakeStore = { getState() { return reducerInitStub } }
 
     expect(storage(GET_ITEM)).equal(undefined)
-    saveStore(fakeStore)(fakeNext)(action)
+    saveStore('test-app')(fakeStore)(fakeNext)(action)
 
     expect(fakeNext.withArgs(action)).calledOnce
     const value = storage(GET_ITEM)
@@ -38,7 +38,7 @@ describe('saveStore', () => {
     const fakeStore = { getState() { return reducerInitStub } }
 
     expect(storage(GET_ITEM)).equal(undefined)
-    saveStore(fakeStore)(fakeNext)(action)
+    saveStore('test-app')(fakeStore)(fakeNext)(action)
 
     expect(fakeNext.withArgs(action)).calledOnce
     const value = storage(GET_ITEM)
