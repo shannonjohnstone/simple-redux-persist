@@ -29,7 +29,6 @@ describe('saveStore', () => {
 
     expect(value).equal(JSON.stringify(reducerInitStub))
   })
-
   it('should pass the intercepted action to next - localStorage', () => {
     storage(REMOVE_ITEM)
 

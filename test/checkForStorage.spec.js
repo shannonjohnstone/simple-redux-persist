@@ -8,7 +8,6 @@ describe('Check sessionStorage exists', () => {
     global.sessionStorage = new StorageMock()
     global.localStorage = new StorageMock()
   })
-  
   it('should be true', () => {
     const value = checkForStorage()
     expect(value).equal(true)
