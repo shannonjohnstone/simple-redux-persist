@@ -29,10 +29,8 @@ describe('saveStore', () => {
 
     expect(value).equal(JSON.stringify(reducerInitStub))
   })
-  
+
   it('should pass the intercepted action to next - localStorage', () => {
-    storageType.setType('local')
-    storageType.setKey('unique-local-storage-key')
     storage(REMOVE_ITEM)
 
     const nextArgs = []
@@ -40,7 +38,7 @@ describe('saveStore', () => {
     const fakeStore = { getState() { return reducerInitStub } }
 
     expect(storage(GET_ITEM)).equal(undefined)
-    saveStore({ namespace: 'test-app' })(fakeStore)(fakeNext)(action)
+    saveStore({ namespace: 'test-app', type: 'local' })(fakeStore)(fakeNext)(action)
 
     expect(fakeNext.withArgs(action)).calledOnce
     const value = storage(GET_ITEM)
