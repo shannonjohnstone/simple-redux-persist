@@ -6,8 +6,8 @@ export default {
   key: REDUX_LOCAL_STORAGE_PREFIX,
   // Methods
   setType: function(type) {
-    console.log(`${type} storageTypeUtils invoked`);
     this.type = type
+    console.log(`${this.type} storageTypeUtils invoked`);
   },
   getType: function(type) {
     this.type = type
