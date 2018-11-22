@@ -1,22 +1,16 @@
 import storageType from './storageType'
-import { REDUX_SESSION_STORAGE } from './constants'
 
 export default function (action, value) {
-  const type = storageType.getStorageType()
+  const storage = storageType.getStorage()
+  const key = storageType.getKey()
   switch (action) {
     case 'setItem':
-      if (type === 'sessionStorage') sessionStorage.setItem(REDUX_SESSION_STORAGE, value)
-      else localStorage.setItem(storageType.getLocalStorageKey(), value)
-      break
+      return storage.setItem(key, value)
     case 'getItem':
-      if (type === 'sessionStorage') return sessionStorage.getItem(REDUX_SESSION_STORAGE)
-      else return localStorage.getItem(storageType.getLocalStorageKey())
-      break
+      return storage.getItem(key)
     case 'removeItem':
-      if (type === 'sessionStorage') sessionStorage.removeItem(REDUX_SESSION_STORAGE)
-      else localStorage.removeItem(storageType.getLocalStorageKey())
-      break
+      return storage.removeItem(key)
     default:
-      break
+      return
   }
 }
