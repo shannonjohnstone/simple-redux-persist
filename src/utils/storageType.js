@@ -2,21 +2,19 @@ import { REDUX_LOCAL_STORAGE_PREFIX } from './constants'
 
 export default (() => {
   let storageType = 'session'
-  let localStorageKey
+  let storageKey
   console.log(storageType, 'storageTypeUtils invoked');
 
-  function setAppName(appName) {
-    if (!appName) localStorageKey = REDUX_LOCAL_STORAGE_PREFIX
-    else localStorageKey = `${REDUX_LOCAL_STORAGE_PREFIX}-${appName}`
+  function setNameSpace(nameSpace) {
+    storageKey = `${REDUX_LOCAL_STORAGE_PREFIX}-${nameSpace}`
   }
 
-  function getLocalStorageKey() {
-    return localStorageKey
+  function setStorageType(type) {
+    storageType = type
   }
 
-  function useLocalStorage(appName) {
-    storageType = 'local'
-    setAppName(appName)
+  function getStorageKey() {
+    return storageKey
   }
 
   function getStorageType() {
@@ -24,9 +22,9 @@ export default (() => {
   }
 
   return {
-    useLocalStorage,
+    setStorageType,
     getStorageType,
-    setAppName,
-    getLocalStorageKey
+    setNameSpace,
+    getStorageKey
   }
 })()

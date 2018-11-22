@@ -1,9 +1,10 @@
 import { checkForStorage, storageType, storage} from './utils'
 
-export default (appName) => {
+export default ({ namespace, type = 'session' }) => {
   // Feels to dangerous to allow people to have a default app name, because their apps will clash
-  if (!appName) throw new Error('An appName must be supplied')
-  storageType.setAppName(appName)
+  if (!namespace) throw new Error('A namespace must be supplied')
+  storageType.setNamespace(namespace)
+  storageType.setStorageType(type)
 
   return store => next => action => {
     if (typeof (window) === 'undefined' || !checkForStorage()) return next(action)
