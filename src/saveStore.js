@@ -22,3 +22,4 @@ export default ({ namespace, type = 'session' }) => {
     return result
   }
 }
+
