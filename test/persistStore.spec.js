@@ -21,7 +21,8 @@ describe('persistStore', () => {
     expect(store.dispatch).calledOnce
   })
   it('first action with payload - localStorage', () => {
-    storageType.useLocalStorage('unique-local-storage-key')
+    storageType.setType('local')
+    storageType.setKey('unique-local-storage-key')
 
     const fakeStore = { getState() { return reducerInitStub }, dispatch: sinon.spy() }
 

@@ -1,32 +1,24 @@
-import { REDUX_LOCAL_STORAGE_PREFIX } from './constants'
+import { REDUX_LOCAL_STORAGE_PREFIX , SESSION_STORAGE, LOCAL_STORAGE} from './constants'
 
-export default (() => {
-  let storageType = 'session'
-  let localStorageKey
-  console.log(storageType, 'storageTypeUtils invoked');
-
-  function setLocalStorageKey(storageKey) {
-    if (!storageKey || storageKey === undefined || storageKey === null) localStorageKey = REDUX_LOCAL_STORAGE_PREFIX
-    else localStorageKey = `${REDUX_LOCAL_STORAGE_PREFIX}-${storageKey}`
-  }
-
-  function getLocalStorageKey() {
-    return localStorageKey
-  }
-
-  function useLocalStorage(storageKey) {
-    storageType = 'local'
-    setLocalStorageKey(storageKey)
-  }
-
-  function getStorageType() {
-    return storageType === 'session' ? 'sessionStorage' : 'localStorage'
-  }
-
-  return {
-    useLocalStorage,
-    getStorageType,
-    setLocalStorageKey,
-    getLocalStorageKey
-  }
-})()
+export default {
+  // Properties
+  type: 'session',
+  key: REDUX_LOCAL_STORAGE_PREFIX,
+  // Methods
+  setType: function(type) {
+    this.type = type
+    console.log(`${this.type} storageTypeUtils invoked`);
+  },
+  getType: function(type) {
+    this.type = type
+  },
+  setKey: function(namespace) {
+    this.key = `${REDUX_LOCAL_STORAGE_PREFIX}-${namespace}`
+  },
+  getKey: function() {
+    return this.key
+  },
+  getStorage: function() {
+    return this.type === 'session' ? sessionStorage : localStorage
+  },
+}

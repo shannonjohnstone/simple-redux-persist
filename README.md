@@ -11,7 +11,7 @@ This package can be used with the following browser storage;
 
 There is two configuration options, either sessionStorage or localStorage.
 
-By default this package is setup to use `sessionStorage` but if you would like to use `localStorage` it's simple as using the `useLocalStorage()` method in the second example.
+By default this package is setup to use `sessionStorage` but if you would like to use `localStorage` you can also do so. More info in the second example.
 
 **sessionStorage versus localStorage**
 
@@ -24,7 +24,8 @@ By default this package is setup to use `sessionStorage` but if you would like t
 import { saveStore, persistStore } from 'simple-redux-persist'
 
 function configureStore(initialState = {}) {
-  const enhancers = [applyMiddleware(saveStore)] //
+  const saveStoreMiddleware = saveStore({ namepsace: 'my-app' })
+  const enhancers = [applyMiddleware(saveStoreMiddleware)] //
   const store = { ...createStore(rootReducer, initialState, compose(...enhancers)) }
   return store
 }
@@ -34,22 +35,17 @@ export default () => persistStore(configureStore())
 
 **Store configuration using localStorage**
 
-When wanting to use `localStorage` you can you the `useLocalStorage` method to set that option and doing so you can also pass in a unique prefix if you would like.
+When wanting to use `localStorage` change type to `local`
 
 ```js
-useLocalStorage('unique-prefix') // with prefix -> redux-local-storage-unique-prefix
-useLocalStorage() // without prefix -> redux-local-storage
-```
-
-```js
-import { saveStore, persistStore, useLocalStorage } from 'simple-redux-persist'
-
-useLocalStorage()
+import { saveStore, persistStore } from 'simple-redux-persist'
 
 function configureStore(initialState = {}) {
-  const enhancers = [applyMiddleware(saveStore)]
-  const store = { ...createStore(rootReducer, initialState, compose(...enhancers)) }
-  return store
+  const saveStoreMiddleware = saveStore({ namepsace: 'my-app', type: 'local' })
+    const enhancers = [applyMiddleware(saveStoreMiddleware)]
+    const store = { ...createStore(rootReducer, initialState, compose(...enhancers)) }
+    return store
+  }
 }
 
 export default () => persistStore(configureStore())
